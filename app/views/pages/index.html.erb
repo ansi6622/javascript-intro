@@ -5,16 +5,18 @@
     <p>Learn about events, <code>console.log</code> and <code>alert</code> and <code>innerHTML</code></p>
 
     <ul>
-      <li><a href="01-hello-world-inline">With inline javascript</a></li>
-      <li><a href="02-hello-world-script-tag">With a script tag</a></li>
-      <li><a href="03-hello-world-external-script">With an external script</a></li>
+      <% Page.all.select{|page| page.category == "Hello World"}.each do |page| %>
+        <li><a href="<%= page.path %>"><%= page.title %></a></li>
+      <% end %>
     </ul>
   </li>
   <li>
     <p>Learn about the DOM</p>
 
     <ul>
-      <li><a href="04-dom">DOM</a></li>
+      <% Page.all.select{|page| page.category == "DOM"}.each do |page| %>
+        <li><a href="<%= page.path %>"><%= page.title %></a></li>
+      <% end %>
     </ul>
   </li>
 </ul>

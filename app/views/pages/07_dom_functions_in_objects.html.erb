@@ -1,0 +1,46 @@
+<div class="note">
+  You can organize code into named functions without assigning to variables.
+</div>
+
+<h2>Manipulate elements</h2>
+
+<section>
+  <button id="insert-button">Insert Element</button>
+  <button id="remove-button">Remove Element</button>
+  <button id="update-button">Update Elements</button>
+</section>
+
+<script>
+
+  var MyEvents = {
+
+    insertButtonWasClicked: function (event) {
+      var newDiv = document.createElement('div');
+      newDiv.innerHTML = "This is a new div";
+      newDiv.className = "text inserted-element";
+      event.target.parentNode.appendChild(newDiv);
+    },
+
+    removeButtonWasClicked: function (event) {
+      var newDiv = document.createElement('div');
+      newDiv.innerHTML = "This is a new div";
+      var firstInsertedElement = document.getElementsByClassName('inserted-element')[0];
+      if (firstInsertedElement) {
+        firstInsertedElement.remove();
+      }
+    },
+
+    updateButtonWasClicked: function (event) {
+      Array.prototype.forEach.call(document.getElementsByClassName('inserted-element'), function (thing) {
+        thing.innerHTML = thing.innerHTML + ' updated';
+      });
+    }
+  };
+
+  document.getElementById('insert-button').onclick = MyEvents.insertButtonWasClicked;
+
+  document.getElementById('remove-button').onclick = MyEvents.removeButtonWasClicked;
+
+  document.getElementById('update-button').onclick = MyEvents.updateButtonWasClicked;
+
+</script>

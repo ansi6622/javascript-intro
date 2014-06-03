@@ -1,0 +1,43 @@
+<div class="note">
+  You can organize code into functions assigned to variables.
+</div>
+
+<h2>Manipulate elements</h2>
+
+<section>
+  <button id="insert-button">Insert Element</button>
+  <button id="remove-button">Remove Element</button>
+  <button id="update-button">Update Elements</button>
+</section>
+
+<script>
+
+  var insertButtonWasClicked = function (event) {
+    var newDiv = document.createElement('div');
+    newDiv.innerHTML = "This is a new div";
+    newDiv.className = "text inserted-element";
+    event.target.parentNode.appendChild(newDiv);
+  };
+
+  var removeButtonWasClicked = function (event) {
+    var newDiv = document.createElement('div');
+    newDiv.innerHTML = "This is a new div";
+    var firstInsertedElement = document.getElementsByClassName('inserted-element')[0];
+    if (firstInsertedElement) {
+      firstInsertedElement.remove();
+    }
+  };
+
+  var updateButtonWasClicked = function (event) {
+    Array.prototype.forEach.call(document.getElementsByClassName('inserted-element'), function (thing) {
+      thing.innerHTML = thing.innerHTML + ' updated';
+    });
+  };
+
+  document.getElementById('insert-button').onclick = insertButtonWasClicked;
+
+  document.getElementById('remove-button').onclick = removeButtonWasClicked;
+
+  document.getElementById('update-button').onclick = updateButtonWasClicked;
+
+</script>

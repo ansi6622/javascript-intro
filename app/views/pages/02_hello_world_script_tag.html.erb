@@ -1,0 +1,45 @@
+<% content_for :page_title, 'script tag' %>
+
+<a href="/03-hello-world-external-script" class="next-link">Next &rarr;</a>
+<h1>3 Hello Worlds - Script Tag</h1>
+
+<div class="note">
+  Javascript can be written in a <%= "<script></script>" %> tag in the HTML
+</div>
+
+<h2>console.log</h2>
+
+<section>
+  <button id="console-log-button">Hello World</button>
+</section>
+
+<h2>alert</h2>
+
+<section>
+  <button id="alert-button">Hello World</button>
+</section>
+
+<h2>innerHTML</h2>
+
+<section>
+  <button id="inner-html-button">Hello World</button>
+  <div id="hello-container" class="text">
+    This text will be replaced...
+  </div>
+</section>
+
+<script>
+
+  document.getElementById("console-log-button").onclick = function () {
+    console.log('Hello World')
+  };
+
+  document.getElementById("alert-button").onclick = function () {
+    alert('Hello World')
+  };
+
+  document.getElementById("inner-html-button").onclick = function () {
+    document.getElementById('hello-container').innerHTML = 'Hello World'
+  };
+
+</script>

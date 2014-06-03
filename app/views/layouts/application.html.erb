@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Intro - <%= content_for(:page_title) %></title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <%= link_to "Home", root_path, class: "nav" %>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <%= yield %>
+  </div>
+</main>
+
+</body>
+</html>
+

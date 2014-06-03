@@ -1,0 +1,70 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+header {
+  background-color: #0B486B;
+}
+
+.container {
+  padding: 1em;
+}
+
+a.nav {
+  display: inline-block;
+  color: #CFF09E;
+
+  & + & {
+    border-left: 1px solid #CFF09E;
+    padding-left: .5em;
+  }
+}
+
+section {
+  border: 1px solid #ccc;
+  background: #efefef;
+  padding: 1em;
+}
+
+button {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3B8686), color-stop(1, #79BD9A));
+  background-color: #3B8686;
+  border-radius: 6px;
+  border: 1px solid #0B486B;
+  color: #fff;
+  font-family: arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  $height: 40px;
+  height: $height;
+  line-height: $height - 5;
+  min-width: 100px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #3B8686;
+}
+
+button:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79BD9A), color-stop(1, #3B8686));
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+.text {
+  padding: .5em 0;
+}
+
+div.note {
+  background: #FAE637;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+a.next-link {
+  float: right;
+}

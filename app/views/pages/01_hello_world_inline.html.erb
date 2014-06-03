@@ -1,0 +1,29 @@
+<% content_for :page_title, 'inline js' %>
+
+<a href="/02-hello-world-script-tag" class="next-link">Next &rarr;</a>
+<h1>3 Hello Worlds - Inline JS</h1>
+
+<div class="note">
+  Note that the javascript can be written directly in the HTML in the onclick handlers...
+</div>
+
+<h2>console.log</h2>
+
+<section>
+  <button onclick="console.log('Hello World')">Hello World</button>
+</section>
+
+<h2>alert</h2>
+
+<section>
+  <button onclick="alert('Hello World')">Hello World</button>
+</section>
+
+<h2>innerHTML</h2>
+
+<section>
+  <button onclick="document.getElementById('hello-container').innerHTML = 'Hello World'">Hello World</button>
+  <div id="hello-container" class="text">
+    This text will be replaced...
+  </div>
+</section>

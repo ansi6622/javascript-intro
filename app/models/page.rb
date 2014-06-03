@@ -5,10 +5,10 @@ class Page
       new("/01-hello-world-inline", "With inline javascript", "Hello World"),
       new("/02-hello-world-script-tag", "With a script tag", "Hello World"),
       new("/03-hello-world-external-script", "With an external script", "Hello World"),
-      new("/04-dom-anonymous-functions", "Anonymous functions", "DOM"),
-      new("/05-dom-function-variables", "Function Variables", "DOM"),
-      new("/06-dom-named-functions", "Named Functions", "DOM"),
-      new("/07-dom-functions-in-objects", "Functions in Objects", "DOM"),
+      new("/04-dom-anonymous-functions", "With Anonymous functions", "DOM"),
+      new("/05-dom-function-variables", "With Function Variables", "DOM"),
+      new("/06-dom-named-functions", "With Named Functions", "DOM"),
+      new("/07-dom-functions-in-objects", "With Functions in Objects", "DOM"),
     ]
   end
 

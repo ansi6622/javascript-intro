@@ -9,6 +9,7 @@ class Page
       new("/05-dom-function-variables", "With Function Variables", "DOM"),
       new("/06-dom-named-functions", "With Named Functions", "DOM"),
       new("/07-dom-functions-in-objects", "With Functions in Objects", "DOM"),
+      new("/08-sample-drawing-app", "Sample Drawing App", "Sample Apps"),
     ]
   end
 

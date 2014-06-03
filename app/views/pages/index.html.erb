@@ -19,4 +19,13 @@
       <% end %>
     </ul>
   </li>
+  <li>
+    <p>Sample Apps</p>
+
+    <ul>
+      <% Page.all.select{|page| page.category == "Sample Apps"}.each do |page| %>
+        <li><a href="<%= page.path %>"><%= page.title %></a></li>
+      <% end %>
+    </ul>
+  </li>
 </ul>

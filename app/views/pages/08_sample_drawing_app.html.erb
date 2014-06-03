@@ -1,0 +1,19 @@
+<h2>Type "s" to activate / deactivate the drawing board</h2>
+
+<section>
+  <button id="replay">Replay</button>
+  <input type="range" id="range-slider">
+</section>
+
+<%= javascript_include_tag "application" %>
+
+<%#
+    The drawing_app.js file is included on every page.
+    But we don't want it to load on every page.
+    So we manually call a function that sets everything up once all scripts are loaded and ready to go.
+%>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    DrawingApp.getStarted();
+  });
+</script>

@@ -1,31 +1,14 @@
 <h1>Welcome to the gSchool javascript sample app!</h1>
 
 <ul>
-  <li>
-    <p>Learn about events, <code>console.log</code> and <code>alert</code> and <code>innerHTML</code></p>
-
-    <ul>
-      <% Page.all.select{|page| page.category == "Hello World"}.each do |page| %>
-        <li><a href="<%= page.path %>"><%= page.title %></a></li>
-      <% end %>
-    </ul>
-  </li>
-  <li>
-    <p>Learn about the DOM</p>
-
-    <ul>
-      <% Page.all.select{|page| page.category == "DOM"}.each do |page| %>
-        <li><a href="<%= page.path %>"><%= page.title %></a></li>
-      <% end %>
-    </ul>
-  </li>
-  <li>
-    <p>Sample Apps</p>
-
-    <ul>
-      <% Page.all.select{|page| page.category == "Sample Apps"}.each do |page| %>
-        <li><a href="<%= page.path %>"><%= page.title %></a></li>
-      <% end %>
-    </ul>
-  </li>
+  <% Page.categories.each do |category, description| %>
+    <li>
+      <p><%= description.html_safe %></p>
+      <ul>
+        <% Page.all.select{|page| page.category == category}.each do |page| %>
+          <li><a href="<%= page.path %>"><%= page.title %></a></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>

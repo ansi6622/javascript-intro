@@ -70,3 +70,11 @@ div.note {
 a.next-link {
   float: right;
 }
+
+.inserted-element {
+  cursor: pointer;
+
+  &:hover {
+    background: #ccc;
+  }
+}

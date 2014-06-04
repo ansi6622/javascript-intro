@@ -1,17 +1,27 @@
-window.HelloWorld = {
+window.HelloWorldWithFunctionVars = {
 
   initialize: function () {
-    document.getElementById("console-log-button").onclick = function () {
-      console.log('Hello World')
+
+    // setup variables
+    var text = "Hello World";
+
+    var printHelloToConsole = function () {
+      console.log(text);
     };
 
-    document.getElementById("alert-button").onclick = function () {
-      alert('Hello World')
+    var alertHelloWorld = function () {
+      alert(text);
     };
 
-    document.getElementById("inner-html-button").onclick = function () {
-      document.getElementById('hello-container').innerHTML = 'Hello World'
+    var replaceTextWithHelloWorld = function () {
+      $('#hello-container').html(text);
     };
+
+    // define event listeners
+    $("#console-log-button").click(printHelloToConsole);
+    $("#alert-button").click(alertHelloWorld);
+    $("#inner-html-button").click(replaceTextWithHelloWorld);
+
   }
 
 };

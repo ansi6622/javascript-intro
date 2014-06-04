@@ -1,23 +1,11 @@
-make note of developer console
-delete anonymous function things
-not endorsements -
+# TODO:
 
-best practices
-  - anonymous functions are hard to debug
-  - globals are bad - namespaces are good
-  - running code on domready in the browser
-  - small boxes
+* Convert all code to jQuery
 
-reverse this
+# Concepts to introduce:
 
-create a template, tell students to use that
-
-"this" and event handling and objects
-
-initialize
-
-talk about javascript objects / vs ruby objects - prototipical inheritance??
-
-jquery to dom page
-
-document ready function this
+* Evented programming
+* DOM manipulation
+* Javascript organization
+* Executing on page load
+* Event binding and event delegation (add to the dom page)

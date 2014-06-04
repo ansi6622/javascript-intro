@@ -1,5 +1,7 @@
 <div class="note">
-  Javascript can be written in a <%= "<script></script>" %> tag in the HTML
+  <p>Javascript can be written in an external file as a JavaScript, then called from within the page.</p>
+
+  <p>This is a great pattern, and is frequently used when using frameworks like Backbone</p>
 </div>
 
 <h2>console.log</h2>
@@ -24,18 +26,9 @@
   </div>
 </section>
 
+<%= javascript_include_tag "application" %>
 <script>
-
-  document.getElementById("console-log-button").onclick = function () {
-    console.log('Hello World')
-  };
-
-  document.getElementById("alert-button").onclick = function () {
-    alert('Hello World')
-  };
-
-  document.getElementById("inner-html-button").onclick = function () {
-    document.getElementById('hello-container').innerHTML = 'Hello World'
-  };
-
+  $(document).ready(function () {
+    HelloWorldWithFunctionVars.initialize();
+  });
 </script>

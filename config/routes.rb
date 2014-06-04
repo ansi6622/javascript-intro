@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     get page.path => "pages##{page.action}"
   end
 
+  resources :drawings
+
 end

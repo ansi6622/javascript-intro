@@ -6,16 +6,72 @@ window.DrawingApp = {
   replayDiv: null,
   trackingDivs: [],
   overlayDiv: null,
+  drawings: [],
 
-  getStarted: function () {
-    $("#range-slider").val(5);
+  initialize: function () {
+    $.getJSON("/drawings", this.drawingsWereLoaded.bind(this));
     $(document).on("keypress", this.keyWasPressed.bind(this));
     $(document).on("mousemove", this.trackMovement.bind(this));
-    $(document).on("click", "#replay", this.replayButtonWasPressed.bind(this));
+    $(document).on("click", ".drawing", this.shapeDrawingWasClicked.bind(this));
+    $(document).on("ajax:success", "form", this.drawingWasAdded.bind(this));
+    this.resetForm();
+  },
+
+  drawingWasAdded: function (event, drawing) {
+    this.drawings.push(drawing);
+    this.renderDrawings();
+    this.resetForm();
+  },
+
+  resetForm: function () {
+    $("#create-drawing-button").prop("disabled", true).attr("disabled", "disabled");
+    $("#drawing_description").prop("disabled", true).attr("disabled", "disabled");
+    $("#drawing_description").val("");
+  },
+
+  enableForm: function () {
+    setTimeout(function () {
+      $("#create-drawing-button").prop("disabled", false).removeAttr("disabled");
+      $("#drawing_description").prop("disabled", false).removeAttr("disabled");
+      $("#drawing_description").focus();
+    }, 10);
+  },
+
+  drawingsWereLoaded: function (response) {
+    this.drawings = response;
+    this.renderDrawings();
+  },
+
+  shapeDrawingWasClicked: function (event) {
+    this.coordinates = $(event.target).data().points;
+    this.clearTrackingDivs();
+
+    if (this.coordinates.length > 0) {
+      this.currentCoordinateIndex = -1;
+      this.replayDiv = $("<div>").css({
+        height: "20px",
+        width: "20px",
+        borderRadius: "10px",
+        backgroundColor: "gold",
+        position: "absolute"
+      });
+      $("body").append(this.replayDiv);
+      this.positionReplayDiv();
+    } else {
+      alert("This drawing has no associated shape")
+    }
+
+  },
+
+  renderDrawings: function () {
+    $("#drawings").empty();
+    this.drawings.forEach(function (drawing) {
+      $("#drawings").append($('<div class="drawing">').html(drawing.description).data({points: drawing.points}));
+    });
   },
 
   keyWasPressed: function (event) {
-    if (event.which == 115) {
+    if ($(event.target).is(":not(:text)") && event.which == 115) {
       this.clearTrackingDivs();
       this.toggleTracking();
     }
@@ -40,33 +96,16 @@ window.DrawingApp = {
     }
   },
 
-  replayButtonWasPressed: function (event) {
-    if (this.coordinates.length > 0) {
-      this.clearTrackingDivs();
-      this.currentCoordinateIndex = -1;
-      this.replayDiv = $("<div>").css({
-        height: "20px",
-        width: "20px",
-        borderRadius: "10px",
-        backgroundColor: "gold",
-        position: "absolute"
-      });
-      $("body").append(this.replayDiv);
-      this.positionReplayDiv();
-    } else {
-      alert("You must draw something before I can replay it!")
-    }
-  },
-
   addOverlay: function () {
-    $("body").append($("<div>").css({
+    self.overlayDiv = $("<div>").css({
       backgroundColor: "rgba(0,0,0,0.5)",
       position: "absolute",
       width: "100%",
       height: "100%",
       top: 0,
       left: 0
-    }));
+    });
+    $("body").append(self.overlayDiv);
   },
 
   toggleTracking: function () {
@@ -80,6 +119,8 @@ window.DrawingApp = {
       this.tracking = false;
       this.clearTrackingDivs();
       self.overlayDiv.remove();
+      $("#drawing_points").val(JSON.stringify(this.coordinates));
+      this.enableForm();
     }
   },
 
@@ -106,7 +147,7 @@ window.DrawingApp = {
     $("body").append($otherDiv);
 
     if (this.currentCoordinateIndex < this.coordinates.length - 1) {
-      setTimeout(this.positionReplayDiv.bind(this), $("#range-slider").val());
+      setTimeout(this.positionReplayDiv.bind(this), 5);
     } else {
       this.replayDiv.remove();
     }

@@ -78,3 +78,23 @@ a.next-link {
     background: #ccc;
   }
 }
+
+.drawing-input {
+  width: 40em;
+}
+
+.drawing {
+  border: 1px solid #ccc;
+  background: #efefef;
+  padding: 1em;
+  margin: 1em 0;
+  cursor: pointer;
+
+  &:hover {
+    background: #e8e8e8;
+  }
+}
+
+input[type=submit]:disabled {
+  color: #ccc;
+}

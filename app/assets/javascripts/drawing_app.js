@@ -18,43 +18,20 @@ window.DrawingApp = {
     this.resetForm();
   },
 
-  drawingWasAdded: function (event, drawing) {
-    this.drawings.push(drawing);
-    this.renderDrawings();
-    this.resetForm();
-  },
-
-  resetForm: function () {
-    $("#create-drawing-button").prop("disabled", true).attr("disabled", "disabled");
-    $("#drawing_description").prop("disabled", true).attr("disabled", "disabled");
-    $("#drawing_description").val("");
-  },
-
-  enableForm: function () {
-    setTimeout(function () {
-      $("#create-drawing-button").prop("disabled", false).removeAttr("disabled");
-      $("#drawing_description").prop("disabled", false).removeAttr("disabled");
-      $("#drawing_description").focus();
-    }, 10);
-  },
-
-  deleteButtonWasClicked: function(event){
-    $.ajax({
-      url: $(event.target).closest(".drawing").data().drawing.url,
-      type: 'DELETE',
-      success: function(){
-        console.log(arguments);
-        $(event.target).closest(".drawing").remove();
-      }
-    });
-    this.clearTrackingDivs();
-    this.coordinates = [];
+  deleteButtonWasClicked: function (event) {
+    if (confirm('Are you sure?')) {
+      $.ajax({
+        url: $(event.target).closest(".drawing").data().drawing.url,
+        type: 'DELETE',
+        success: function () {
+          console.log(arguments);
+          $(event.target).closest(".drawing").remove();
+        }
+      });
+      this.clearTrackingDivs();
+      this.coordinates = [];
+    }
     return false;
-  },
-
-  drawingsWereLoaded: function (response) {
-    this.drawings = response;
-    this.renderDrawings();
   },
 
   shapeDrawingWasClicked: function (event) {
@@ -75,20 +52,6 @@ window.DrawingApp = {
     } else {
       alert("This drawing has no associated shape")
     }
-  },
-
-  renderDrawings: function () {
-    $("#drawings").empty();
-    this.drawings.forEach(function (drawing) {
-      var $deleteDiv = $('<div class="delete">x</div>');
-
-      var $drawingDiv = $('<div class="drawing">')
-        .html(drawing.description)
-        .data({drawing: drawing})
-        .append($deleteDiv);
-
-      $("#drawings").append($drawingDiv);
-    });
   },
 
   keyWasPressed: function (event) {
@@ -117,16 +80,50 @@ window.DrawingApp = {
     }
   },
 
-  addOverlay: function () {
-    self.overlayDiv = $("<div>").css({
-      backgroundColor: "rgba(0,0,0,0.5)",
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      top: 0,
-      left: 0
+  drawingWasAdded: function (event, drawing) {
+    this.drawings.push(drawing);
+    this.renderDrawings();
+    this.resetForm();
+  },
+
+  drawingsWereLoaded: function (response) {
+    this.drawings = response;
+    this.renderDrawings();
+  },
+
+  resetForm: function () {
+    $("#create-drawing-button").prop("disabled", true).attr("disabled", "disabled");
+    var $drawingDescription = $("#drawing_description");
+    $drawingDescription.prop("disabled", true).attr("disabled", "disabled");
+    $drawingDescription.val("");
+  },
+
+  enableForm: function () {
+    setTimeout(function () {
+      $("#create-drawing-button").prop("disabled", false).removeAttr("disabled");
+      var $drawingDescription = $("#drawing_description");
+      $drawingDescription.prop("disabled", false).removeAttr("disabled");
+      $drawingDescription.focus();
+    }, 10);
+  },
+
+  renderDrawings: function () {
+    $("#drawings").empty();
+    this.drawings.forEach(function (drawing) {
+      var $deleteDiv = $('<div class="delete">x</div>');
+
+      var $drawingDiv = $('<div class="drawing">')
+        .html(drawing.description)
+        .data({drawing: drawing})
+        .append($deleteDiv);
+
+      $("#drawings").append($drawingDiv);
     });
-    $("body").append(self.overlayDiv);
+  },
+
+  addOverlay: function () {
+    this.overlayDiv = $('<div class="overlay">');
+    $("body").append(this.overlayDiv);
   },
 
   toggleTracking: function () {
@@ -139,7 +136,7 @@ window.DrawingApp = {
       document.body.style.backgroundColor = "";
       this.tracking = false;
       this.clearTrackingDivs();
-      self.overlayDiv.remove();
+      this.overlayDiv.remove();
       $("#drawing_points").val(JSON.stringify(this.coordinates));
       this.enableForm();
     }

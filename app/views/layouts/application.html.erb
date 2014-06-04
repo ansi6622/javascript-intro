@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>JS Intro - <%= @page ? @page.title : 'Home' %></title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -25,9 +26,9 @@
           <a href="<%= @next_page.path %>" class="next-link">Next &rarr;</a>
         <% end %>
         <div style="clear: both;"></div>
-      </p>
+        </p>
 
-      <h1><%= @page.category %> - <%= @page.title %></h1>
+        <h1><%= @page.category %> - <%= @page.title %></h1>
     <% end %>
 
     <%= yield %>

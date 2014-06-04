@@ -14,6 +14,7 @@ window.DrawingApp = {
     $(document).on("mousemove", this.trackMovement.bind(this));
     $(document).on("click", ".drawing", this.shapeDrawingWasClicked.bind(this));
     $(document).on("ajax:success", "form", this.drawingWasAdded.bind(this));
+    $(document).on("click", ".delete", this.deleteButtonWasClicked.bind(this));
     this.resetForm();
   },
 
@@ -37,13 +38,27 @@ window.DrawingApp = {
     }, 10);
   },
 
+  deleteButtonWasClicked: function(event){
+    $.ajax({
+      url: $(event.target).closest(".drawing").data().drawing.url,
+      type: 'DELETE',
+      success: function(){
+        console.log(arguments);
+        $(event.target).closest(".drawing").remove();
+      }
+    });
+    this.clearTrackingDivs();
+    this.coordinates = [];
+    return false;
+  },
+
   drawingsWereLoaded: function (response) {
     this.drawings = response;
     this.renderDrawings();
   },
 
   shapeDrawingWasClicked: function (event) {
-    this.coordinates = $(event.target).data().points;
+    this.coordinates = $(event.target).data().drawing.points;
     this.clearTrackingDivs();
 
     if (this.coordinates.length > 0) {
@@ -60,13 +75,19 @@ window.DrawingApp = {
     } else {
       alert("This drawing has no associated shape")
     }
-
   },
 
   renderDrawings: function () {
     $("#drawings").empty();
     this.drawings.forEach(function (drawing) {
-      $("#drawings").append($('<div class="drawing">').html(drawing.description).data({points: drawing.points}));
+      var $deleteDiv = $('<div class="delete">x</div>');
+
+      var $drawingDiv = $('<div class="drawing">')
+        .html(drawing.description)
+        .data({drawing: drawing})
+        .append($deleteDiv);
+
+      $("#drawings").append($drawingDiv);
     });
   },
 

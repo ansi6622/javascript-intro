@@ -98,3 +98,10 @@ a.next-link {
 input[type=submit]:disabled {
   color: #ccc;
 }
+
+.delete {
+  float: right;
+  padding: 0 8px;
+  background: #666;
+  color: red;
+}

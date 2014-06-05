@@ -16,6 +16,7 @@ class Page
 
       new("/sample-drawing-app", "Sample Drawing App", "Sample Apps"),
       new("/legacy-events", "Working with legacy events", "Sample Apps"),
+      new("/sample-task-manager", "Sample Task Manager", "Sample Apps"),
     ]
   end
 

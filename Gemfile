@@ -12,3 +12,11 @@ gem 'turbolinks', '~> 2.2.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'spring', group: :development
+
+
+group :development, :test do
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'selenium-webdriver', '~> 2.42.0'
+  gem 'rspec-rails', ' ~> 2.14.2'
+  gem 'capybara', '~> 2.3.0'
+end

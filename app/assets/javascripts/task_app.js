@@ -16,6 +16,8 @@ window.TaskApp = {
     tasks.forEach(this.displayTask);
   },
   displayTask: function(task){
-    $('#tasks').append("<li>" + task.description + "</li>");
+    var deleteLink = "<a href='/tasks/" + task.id + "' data-method='delete' data-confirm='Are you sure?'>Delete</a>";
+    var task = "<li>" + task.description + " " + deleteLink + "</li>";
+    $('#tasks').append(task);
   }
 };

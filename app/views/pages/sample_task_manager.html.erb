@@ -1,0 +1,14 @@
+<%= form_for Task.new, remote: true do |f| %>
+    <%= f.text_field :description, placeholder: "What do you need to get done?", class: 'drawing-input' %>
+    <%= f.submit 'Add it!' %>
+<% end %>
+
+<ul id="tasks">
+
+</ul>
+
+<script>
+    $(document).ready(function () {
+        TaskApp.initialize();
+    });
+</script>

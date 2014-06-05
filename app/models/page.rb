@@ -15,6 +15,8 @@ class Page
       new("/dom-manipulation", "With Functions in Objects", "DOM"),
 
       new("/sample-drawing-app", "Sample Drawing App", "Sample Apps"),
+
+      new("/sample-task-manager", "Sample Task Manager", "Sample Apps"),
     ]
   end
 

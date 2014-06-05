@@ -15,6 +15,7 @@ class Page
       new("/dom-manipulation", "With Functions in Objects", "DOM"),
 
       new("/sample-drawing-app", "Sample Drawing App", "Sample Apps"),
+      new("/legacy-events", "Working with legacy events", "Sample Apps"),
     ]
   end
 

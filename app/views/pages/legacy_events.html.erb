@@ -1,0 +1,17 @@
+<div class="note">
+  <p>There are many older ways of adding events to DOM elements. This page will tell you a little
+  about them. On all new code, use the $.on() function for adding events.</p>
+</div>
+
+<h2>$.bind() and others ($.click(), $.focus(), etc)</h2>
+
+<section>
+  <button class="bind-button">Hello World</button>
+  <button class="add-dynamic-button">Add another button</button>
+</section>
+
+<script>
+    $(document).ready(function () {
+        LegacyEvents.initialize();
+    });
+</script>

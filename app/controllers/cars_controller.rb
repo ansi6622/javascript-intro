@@ -5,7 +5,11 @@ class CarsController < ApplicationController
            else
              Car.all
            end
-    render json: cars.as_json
+    if cars.empty?
+      render json: {error: 'No cars found!'}, status: 404
+    else
+      render json: cars.as_json
+    end
   end
 
   def create

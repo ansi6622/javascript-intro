@@ -14,7 +14,10 @@ window.CarApp = {
   },
 
   filterCars: function () {
-    $.get('/cars', {q: $("input[name=q]").val()}, this.displayCars.bind(this), "json");
+    var xhr = $.getJSON('/cars', {q: $("input[name=q]").val()});
+
+    xhr.done(this.displayCars.bind(this));
+    xhr.fail(this.displayCarsFailed.bind(this));
   },
 
   createCar: function () {
@@ -22,13 +25,22 @@ window.CarApp = {
   },
 
   displayCars: function (cars) {
-    $('#cars').empty();
+    this.clearCarsList();
     cars.forEach(this.displayCar);
+  },
+
+  displayCarsFailed: function(request, state, statusText) {
+    alert(request.responseJSON.error);
+    this.clearCarsList();
   },
 
   displayCar: function (car) {
     var deleteLink = "<a href='/cars/" + car.id + ">Delete</a>";
     var car = "<li>" + car.description + " " + deleteLink + "</li>";
     $('#cars').append(car);
+  },
+
+  clearCarsList: function() {
+    $('#cars').empty();
   }
 };

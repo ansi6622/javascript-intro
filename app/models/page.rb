@@ -17,6 +17,7 @@ class Page
       new("/sample-drawing-app", "Sample Drawing App", "Sample Apps"),
       new("/legacy-events", "Working with legacy events", "Sample Apps"),
       new("/sample-task-manager", "Sample Task Manager", "Sample Apps"),
+      new("/car-manager", "A car manager that demonstrates pure jQuery AJAX", "Sample Apps"),
     ]
   end
 

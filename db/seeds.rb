@@ -8,3 +8,6 @@
 
 Task.find_or_create_by!(description: "Walk the dogs")
 Task.find_or_create_by!(description: "Clean the house")
+
+Car.find_or_create_by!(description: "Toyota")
+Car.find_or_create_by!(description: "Ford")

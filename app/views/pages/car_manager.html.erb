@@ -1,0 +1,27 @@
+<p>
+  This app demonstrates using pure jQuery AJAX and unobtrusive javascript to manage a cars.
+</p>
+
+<p>
+  You can compare this to the task manager that uses a mix of jQuery AJAX and Rails UJS
+  to perform the same actions.
+</p>
+
+<form>
+  <input type="text" name="q" placeholder="Filter Cars"/>
+  <input id="filter-cars" type="submit" value="Filter"
+</form>
+
+<form>
+  <input type="text" name="description" placeholder="What's your ride?"/>
+  <input id="create-car" type="submit" value="Store"
+</form>
+
+<ul id="cars">
+</ul>
+
+<script>
+    $(document).ready(function () {
+        CarApp.initialize();
+    });
+</script>

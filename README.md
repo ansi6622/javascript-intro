@@ -2,7 +2,7 @@
 
 ```
 bundle
-rake db:create db:migrate
+rake db:create db:migrate db:seed
 rails s
 open localhost:3000
 ```

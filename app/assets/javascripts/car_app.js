@@ -35,7 +35,7 @@ window.CarApp = {
   },
 
   displayCar: function (car) {
-    var deleteLink = "<a href='/cars/" + car.id + ">Delete</a>";
+    var deleteLink = "<a href='/cars/'" + car.id + ">Delete</a>";
     var car = "<li>" + car.description + " " + deleteLink + "</li>";
     $('#cars').append(car);
   },

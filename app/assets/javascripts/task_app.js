@@ -5,6 +5,7 @@ window.TaskApp = {
   },
 
   taskWasAdded: function (event, task) {
+    $('#task_description').val("");
     this.displayTask(task);
   },
 

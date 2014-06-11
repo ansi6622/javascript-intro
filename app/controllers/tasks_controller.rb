@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   def index
-    render json: Task.all.as_json
+    render json: Task.all
   end
   def create
     sleep(2)
     task = Task.new(params.require(:task).permit(:description))
     if task.save
-      render json: task.as_json
+      render json: task
     else
       render json: task.errors
     end

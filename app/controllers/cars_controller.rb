@@ -8,14 +8,14 @@ class CarsController < ApplicationController
     if cars.empty?
       render json: {error: 'No cars found!'}, status: 404
     else
-      render json: cars.as_json
+      render json: cars
     end
   end
 
   def create
     car = Car.new(params.require(:car).permit(:description))
     if car.save
-      render json: car.as_json
+      render json: car
     else
       render json: car.errors
     end
